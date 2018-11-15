@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>JavaScript Practice</title>
+	<link rel="stylesheet" type="text/css" href="counter.css">
+</head>	
+
+<body onload="load()">
+	<section class="content">
+		<div class="header">
+			<h2>JavaScript Practice Field</h2>
+		</div>
+		<div class="maincontent">
+			<script>
+				var count;
+				var countdown;
+				var time=0;
+				var watch;
+				
+				var sw=true;
+				function load(){
+							 var x = document.getElementById('stp1');
+    				       		if (x.style.display === 'none') {
+        						x.style.display = 'block';
+    							}
+    					 		else {
+      							  x.style.display = 'none';
+    						 		 }
+    						  var y = document.getElementById('stp2');
+    				       		if (y.style.display === 'none') {
+        						y.style.display = 'block';
+    							}
+    					 		else {
+      							  y.style.display = 'none';
+    						 		 }		 
+
+    						 	 document.getElementById("input").value="";
+								}
+				function rmvstart(){
+					var input_value = document.getElementById("input").value;
+
+					if(input_value==0 || input_value=='')
+					{	
+						document.getElementById("error").style.display='';
+						document.getElementById("error").innerHTML='*Please enter some time for counting';
+					}
+					else
+					{	
+						
+					 var z = document.getElementById('str1');
+    				       		if (z.style.display === 'none') {
+        						z.style.display = 'block';
+    							}
+    					 		else {
+      							  z.style.display = 'none';
+    						 		 }
+    				 var z1 = document.getElementById('stp1');
+    				       		if (z1.style.display === 'none') {
+        						z1.style.display = 'block';
+    							}
+    					 		else {
+      							  z1.style.display = 'none';
+    						 		 }
+    		         var z2 = document.getElementById('input');
+    				       		if (z2.style.display === 'none') {
+        						z2.style.display = 'block';
+    							}
+    					 		else {
+      							  z2.style.display = 'none';
+    						 		 }
+
+    				  countstart();	
+
+						
+					}
+
+					
+				}
+
+				function rmvstop(){
+
+					var z = document.getElementById('str1');
+    				       		if (z.style.display === 'none') {
+        						z.style.display = 'block';
+    							}
+    					 		else {
+      							  z.style.display = 'none';
+    						 		 }
+    				 var z1 = document.getElementById('stp1');
+    				       		if (z1.style.display === 'none') {
+        						z1.style.display = 'block';
+    							}
+    					 		else {
+      							  z1.style.display = 'none';
+    						 		 }
+    				 var z2 = document.getElementById('input');
+    				       		if (z2.style.display === 'none') {
+        						z2.style.display = 'block';
+    							}
+    					 		else {
+      							  z2.style.display = 'none';
+    						 		 }		 		 
+
+    				countclear();		 		 
+
+
+				}
+
+
+				
+				function key(){
+                    
+                    var input_value = document.getElementById("input").value;
+
+					if((isNaN(input_value) || input_value==0 || input_value=='' ))
+					{	
+						document.getElementById("error").style.display='';
+						document.getElementById("error").innerHTML='*Please enter valid number';
+                        countdown=0;
+					}
+					else
+					{	
+						document.getElementById("error").style.display='none';
+                        var number=Number(input_value);
+                        
+						document.getElementById("show").innerHTML="Your countdown will start from "+number+"sec";
+					
+						countdown=number+1;
+						
+					}
+
+					
+				}
+
+				function countstart(){
+
+					if(countdown>0)
+					{	
+						
+						countdown--;
+						document.getElementById("show").innerHTML=countdown+"sec";
+						
+					}
+					if(countdown>0)
+					{
+					count=setTimeout("countstart()",1000);
+					}
+					if(countdown<=0)
+					{
+						document.getElementById("show").innerHTML="Time Out";
+						document.getElementById("input").value="";
+						document.getElementById("stp1").innerHTML="<b>Finish</b>";
+
+					}
+
+					
+							}
+				function countclear(){
+					clearTimeout(count);
+					if(document.getElementById("show").innerHTML!='Time Out'){
+					document.getElementById("show").innerHTML="Countdown has been stoped at "+countdown+" sec";
+					}
+					else
+					{
+						document.getElementById("show").innerHTML="Your countdown will start here......";
+						document.getElementById("stp1").innerHTML="<b>Countdown Stop</b>";
+					}
+
+					document.getElementById("input").value="";
+				
+					
+				}
+
+				function start(){
+
+						time++;
+						document.getElementById("show2").innerHTML=time+"sec";
+						watch=setTimeout("start()",1000);
+					
+						
+					
+				}
+				function stop(){
+					clearTimeout(watch);
+					document.getElementById("show2").innerHTML="Total time is "+time+" sec";
+					
+
+				}
+
+			</script>
+				<fieldset>
+					<legend><b>Counter</b></legend>
+					<center>
+						<div>
+							<span><b>Enter the Counting Time in Second </b></span><br/><br/>
+							<span id="error"></span><br/>	
+							<input style="font-size: 30px;  margin-top: 15px;  border-radius: 5px;" type="text" id="input" onkeyup="key()" /><br/><br/>	
+							<button  onclick="rmvstart()" id="str1"><b>Countdown Start</b></button>
+							<button  onclick="rmvstop()" id="stp1"><b>Countdown Stop</b></button>
+						</div><br/>
+
+						<span id="show">Your countdown will start here......</span>
+		   			</center>
+		    	</fieldset>
+		    	<br/>
+
+		    	<fieldset>
+					<legend><b>Stop Watch</b></legend>
+					<center style="margin-top: 30px">
+						<span id="show2" class="font">0 sec</span><br/><br/>
+						<div>
+				
+							<button  onclick="start()" id="str2"><b>Start</b></button>
+							<button  onclick="stop()" id="stp2"><b>Stop</b></button>
+							
+						
+						</div>
+		   			 </center>
+		   		 </fieldset>
+		</div>
+		
+		<div class="footer">
+			<h2>Happy Practice..!!</h2>
+		</div>	
+	</section>	
+</body>	
+</html>
